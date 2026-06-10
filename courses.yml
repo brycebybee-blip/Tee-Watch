@@ -1,0 +1,14 @@
+torrey_north:
+  provider: foreup
+  course_id: 19347
+  schedule_id: 1468
+  display_name: Torrey Pines North
+
+# To add more ForeUp courses, paste the booking URL — the path is
+# /booking/{course_id}/{schedule_id}. Example:
+#
+# torrey_south:
+#   provider: foreup
+#   course_id: 19347
+#   schedule_id: ????
+#   display_name: Torrey Pines South
