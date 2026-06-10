@@ -21,4 +21,6 @@ def send_email(subject: str, html: str) -> None:
         json={"from": from_addr, "to": [to_addr], "subject": subject, "html": html},
         timeout=15,
     )
+    if not r.ok:
+        print(f"Resend {r.status_code}: {r.text}")
     r.raise_for_status()
