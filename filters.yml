@@ -2,12 +2,12 @@ courses: [torrey_north]
 
 date_range_days: [1, 8]
 
-days_of_week: all
+days_of_week: [Fri, Sat, Sun]
 
 time_window:
-  start: "00:00"
-  end: "23:59"
+  start: "06:00"
+  end: "15:00"
 
-min_available_spots: 1
+min_available_spots: 2
 
 holes: any
