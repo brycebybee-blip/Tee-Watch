@@ -31,12 +31,19 @@ jobs:
           NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
           NOTIFY_FROM: ${{ secrets.NOTIFY_FROM }}
 
-      - name: Commit seen.json if changed
+      # Daily heartbeat: keeps the repo "active" so GitHub doesn't disable the
+      # schedule after 60 days of inactivity. Date-only, so it changes at most
+      # once per day -> one extra commit/day rather than one per 10-min run.
+      - name: Heartbeat
+        run: date -u +%Y-%m-%d > .heartbeat
+
+      - name: Commit state if changed
         run: |
-          if ! git diff --quiet seen.json 2>/dev/null; then
-            git config user.name "tee-watch-bot"
-            git config user.email "tee-watch-bot@users.noreply.github.com"
-            git add seen.json
-            git commit -m "update seen.json"
+          git config user.name "tee-watch-bot"
+          git config user.email "tee-watch-bot@users.noreply.github.com"
+          git add seen.json .heartbeat
+          if ! git diff --cached --quiet; then
+            git commit -m "update state ($(date -u +%Y-%m-%dT%H:%MZ))"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
             git push
           fi
