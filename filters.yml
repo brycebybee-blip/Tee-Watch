@@ -1,6 +1,8 @@
 courses: [torrey_north]
 
-date_range_days: [1, 8]
+# Watch from tomorrow out to 3 weeks. The wide window also catches
+# cancellations: when a booked slot reopens it reappears as "new".
+date_range_days: [1, 21]
 
 days_of_week: [Fri, Sat, Sun]
 
