@@ -1,4 +1,4 @@
-courses: [torrey_north]
+courses: [torrey_north, torrey_south]
 
 # Watch from tomorrow out to 3 weeks. The wide window also catches
 # cancellations: when a booked slot reopens it reappears as "new".
